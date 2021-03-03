@@ -36,3 +36,20 @@ fun removeElements(head: ListNode?, `val`: Int): ListNode? {
     }
     return prev.next
 }
+
+/**
+ * 递归的方式(不推荐)
+ */
+fun removeElementsForRecursion(head: ListNode?, `val`: Int): ListNode? {
+    return if (head == null) {
+        null
+    } else {
+        head.next = removeElementsForRecursion(head.next, `val`)
+        if (head.`val` == `val`) {
+            head.next
+        } else {
+            head
+        }
+    }
+}
+
