@@ -1,4 +1,6 @@
 import Array.removeElement
+import Linked_List.ListNode
+import Linked_List.removeElements
 
 /**
  * @author zhangzheng
@@ -8,12 +10,22 @@ import Array.removeElement
  * Desc :测试
  */
 
-
 fun main() {
-    test()
+    val l1 = ListNode(1)
+    val l2 = ListNode(2)
+    val l3 = ListNode(6)
+    val l4 = ListNode(5)
+    val l5 = ListNode(4)
+    val l6 = ListNode(6)
+    l1.next=l2
+    l2.next=l3
+    l3.next=l4
+    l4.next=l5
+    l5.next=l6
+    l6.next=null
+    removeElements(l1,6)
 }
 
-fun test() {
-    val nums = intArrayOf(0,1,2,2,3,0,4,2)
-    print(removeElement(nums,2))
-}
+
+
+
