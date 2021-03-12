@@ -1,5 +1,8 @@
 package Queue
 
+import sun.jvm.hotspot.HelloWorld.e
+
+
 /**
  * @author zhangzheng
  * @Date  2021/3/9 下午5:19
@@ -64,8 +67,47 @@ class MyQueueForArray(size: Int) {
         return nItems == 0
     }
 
-    //队列长度
+    //队列长度 
     fun getSize(): Int {
         return nItems
+    }
+}
+
+/**
+ * 链式队列
+ */
+class MyQueueForLinked<T> {
+
+    class Node<T>(var item: T) {
+        var next: Node<T>? = null
+    }
+
+    private var head: Node<T>? = null
+    private var tail: Node<T>? = null
+    private var size = 0
+
+    //入队操作
+    fun enqueue(t: T) {
+        val node=Node(t)
+        if (head == null) {
+            head = node
+            tail = head
+        } else {
+            tail?.next =node
+            tail = node
+        }
+        size++
+    }
+
+    //出队操作
+    fun dequeue(): T? {
+        return if(size==0){
+            null
+        }else{
+            size--
+            val node=head
+            head=head?.next
+            node?.item
+        }
     }
 }
