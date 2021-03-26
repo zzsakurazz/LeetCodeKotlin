@@ -1,6 +1,5 @@
 package Queue
 
-import sun.jvm.hotspot.HelloWorld.e
 
 
 /**
@@ -8,46 +7,31 @@ import sun.jvm.hotspot.HelloWorld.e
  * @Date  2021/3/9 下午5:19
  * @ClassName MyQueue
  * <p>
- * Desc : 通过数组来实现一个队列结构
+ * Desc : 通过数组和链表来实现一个队列结构
  */
-class MyQueueForArray(size: Int) {
-    var queArray: Array<Any?>
-    var maxSize = 0
-    var front = 0
-    var rear = -1
-    var nItems = 0
 
-    init {
-        maxSize = size
-        queArray = arrayOf(maxSize)
-    }
+/**
+ * 顺序队列
+ * 使用ArrayList来代替array，添加泛型的操作
+ */
+class MyArrayQueue<T> {
+    private var queArray: ArrayList<T?> = arrayListOf()
+    private var front = 0
+    private var rear = 0
 
     //入队操作
-    fun enqueue(value: Any): Boolean {
-        return if (isFull()) {
-            false
-        } else {
-            if (rear == (maxSize - 1)) {
-                //如果已经指到最后一个了
-                rear = -1
-            }
-            queArray[++rear] = value
-            nItems++
-            true
-        }
+    fun enqueue(value: T) {
+        queArray.add(value)
+        rear++
     }
 
     //出队操作
-    fun dequeue(): Any? {
-        var dequeueValue: Any? = null
+    fun dequeue(): T? {
+        var dequeueValue: T? = null
         if (!isEmpty()) {
             dequeueValue = queArray[front]
             queArray[front] = null
             front++
-            if (front == maxSize) {
-                front = 0
-            }
-            nItems--
         }
         return dequeueValue
     }
@@ -57,26 +41,22 @@ class MyQueueForArray(size: Int) {
         return queArray[front]
     }
 
-    //是否已经填满了
-    fun isFull(): Boolean {
-        return maxSize == nItems
-    }
 
     //是否为空队列
     fun isEmpty(): Boolean {
-        return nItems == 0
+        return queArray.isEmpty()
     }
 
     //队列长度 
     fun getSize(): Int {
-        return nItems
+        return queArray.size
     }
 }
 
 /**
  * 链式队列
  */
-class MyQueueForLinked<T> {
+class MyLinkedQueue<T> {
 
     class Node<T>(var item: T) {
         var next: Node<T>? = null
