@@ -79,4 +79,8 @@ class MyLinkedStack<T>{
     fun peek(): T?{
         return head?.item
     }
+
+    fun isEmpty():Boolean{
+        return size==0
+    }
 }
