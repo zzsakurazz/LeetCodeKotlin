@@ -35,11 +35,14 @@ fun reverseList(head: ListNode?): ListNode? {
     return left
 }
 
-///**
-// * 递归
-// */
-//fun recursion(head: ListNode?): ListNode?{
-//
-//
-//
-//}
+/**
+ * 递归
+ */
+fun recursion(head: ListNode?): ListNode?{
+    if(head?.next==null) return head
+    //这里的递归是为了找到最后一个节点
+    val last=reverseList(head.next)
+    head.next?.next=head
+    head.next=null
+    return last
+}
