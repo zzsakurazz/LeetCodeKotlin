@@ -74,3 +74,41 @@ fun quickSort(arr: IntArray,  startIndex: Int, endIndex: Int):IntArray {
     quickSort(arr,r+1,endIndex)
     return arr
 }
+
+/**
+ * 归并排序 时间复杂度：O(nlogN) ，平均空间复杂度：O(n)
+ */
+fun mergeSort(arr: IntArray, startIndex: Int, endIndex: Int) {
+    if (startIndex >= endIndex) return
+    //当心这里可能会溢出
+    val mid = (startIndex + endIndex) / 2
+    mergeSort(arr, startIndex, mid)
+    mergeSort(arr, mid + 1, endIndex)
+    merge(arr, startIndex, mid, endIndex)
+}
+
+fun merge(arr: IntArray, startIndex: Int, mid: Int, endIndex: Int) {
+    println("${arr.size}+$mid+$startIndex+$endIndex")
+    val tempArray = arrayOfNulls<Int>((endIndex - startIndex )+ 1)
+    var i = startIndex
+    var j = mid + 1
+    var k = 0
+    //合并两者相同长度部分
+    while (i <= mid && j <= endIndex) {
+        if (arr[i] <= arr[j]) {
+            tempArray[k++] = arr[i++]
+        } else {
+            tempArray[k++] = arr[j++]
+        }
+    }
+    //如果左边的数组还有剩余就直接添加到temp数组后面
+    while (i <= mid) {
+        tempArray[k++] = arr[i++]
+    }
+    while (j <= endIndex) {
+        tempArray[k++] = arr[j++]
+    }
+    for (a in tempArray.indices) {
+        arr[startIndex + a] = tempArray[a]!!
+    }
+}
