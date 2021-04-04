@@ -81,7 +81,7 @@ fun quickSort(arr: IntArray,  startIndex: Int, endIndex: Int):IntArray {
 fun mergeSort(arr: IntArray, startIndex: Int, endIndex: Int) {
     if (startIndex >= endIndex) return
     //当心这里可能会溢出
-    val mid = (startIndex + endIndex) / 2
+    val mid = startIndex+(endIndex - startIndex) / 2
     mergeSort(arr, startIndex, mid)
     mergeSort(arr, mid + 1, endIndex)
     merge(arr, startIndex, mid, endIndex)
