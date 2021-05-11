@@ -1,4 +1,5 @@
 import Linked.ListNode
+import kotlin.math.pow
 
 
 /**
