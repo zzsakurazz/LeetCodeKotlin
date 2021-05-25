@@ -1,5 +1,3 @@
-import Linked.ListNode
-
 
 /**
  * @author zhangzheng
