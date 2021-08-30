@@ -65,7 +65,7 @@ package Array
 // Related Topics 数组 双指针
 // 👍 781 👎 0
 /**
- * 通过双指针来快速进行元素的调换
+ * 通过双指针来快速进行元素的调换 头尾双指针
  */
 fun removeElement(nums: IntArray, `val`: Int): Int {
     var left = 0

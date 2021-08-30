@@ -60,7 +60,7 @@
 
 
 /**
- * 高斯求和法
+ * 高斯求和法 符合现线性时间复杂度、仅使用额外常数空间要求
  */
 fun missingNumber1(nums: IntArray): Int {
     var i = 0
